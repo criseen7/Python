@@ -1,22 +1,30 @@
-Aprendiendo Python 3.12.1
+Learning Python 3.12.1
+
 
 gh repo clone criseen7/Python
 
+
 Atajos VSC
+
     AjustesGenerales
+
         Abrir paleta de comandos: Ctrl + Shift + P
         Abrir archivo:  Ctrl + P
         Nueva ventana: Ctrl + Shift + N
         Cerrarventana: Ctrl+Shift+W
         Ajustesdelperfil: Ctrl+,
+
     Usabilidad
+
         Crearunnuevoarchivo: Ctrl+N
         Abrirarchivo: Ctrl+O
         Guardararchivo: Ctrl+S
         Cerrar: Ctrl+F4
         AbrirTerminal: Ctrl+❘
         Paneldeproblemas: Ctrl+Shift+M
+
     EdiciónBásica
+
         Cortarlinea Ctrl+X
         Copiarlinea Ctrl+C
         Borrarlinea Ctrl+Shift+K
@@ -30,7 +38,9 @@ Atajos VSC
         Seleccionarlineas Alt+ClickMouse
         Tabularlinea Tab
         Destabularlinea Shift+Tab
+
     Pantalla
+
         Acercar Zoom Ctrl + +
         Alejar Zoom Ctrl +
         Barra lateral Ctrl + B
