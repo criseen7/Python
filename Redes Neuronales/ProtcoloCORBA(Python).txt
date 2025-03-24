@@ -1,0 +1,88 @@
+#******************* Servidor ********************
+import socket
+import threading
+
+# Clase que representa un objeto remoto
+class RemoteObject:
+    def say_hello(self, name):
+        return f"Hello, {name}!"
+
+    def add_numbers(self, a, b):
+        return a + b
+
+# Servidor estilo CORBA
+class CorbaServer:
+    def __init__(self, host="127.0.0.1", port=9000):
+        self.host = host
+        self.port = port
+        self.remote_object = RemoteObject()
+
+    def handle_client(self, client_socket):
+        try:
+            # Recibe el mensaje del cliente
+            request = client_socket.recv(1024).decode('utf-8')
+            method_name, *args = request.split(',')
+            
+            # Ejecuta el método remoto
+            if hasattr(self.remote_object, method_name):
+                method = getattr(self.remote_object, method_name)
+                result = method(*args)
+                client_socket.send(str(result).encode('utf-8'))
+            else:
+                client_socket.send(b"Error: Method not found.")
+        except Exception as e:
+            client_socket.send(f"Error: {str(e)}".encode('utf-8'))
+        finally:
+            client_socket.close()
+
+    def start(self):
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server.bind((self.host, self.port))
+        server.listen(5)
+        print(f"CORBA-like server listening on {self.host}:{self.port}")
+        
+        while True:
+            client_socket, addr = server.accept()
+            print(f"Connection from {addr}")
+            client_handler = threading.Thread(target=self.handle_client, args=(client_socket,))
+            client_handler.start()
+
+if __name__ == "__main__":
+    server = CorbaServer()
+    server.start()
+
+#********************* Cliente **********************
+'''
+import socket
+
+class CorbaClient:
+    def __init__(self, host="127.0.0.1", port=9000):
+        self.host = host
+        self.port = port
+
+    def invoke(self, method_name, *args):
+        try:
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            client.connect((self.host, self.port))
+            
+            # Prepara la solicitud en el formato "method_name,arg1,arg2,..."
+            request = f"{method_name}," + ",".join(map(str, args))
+            client.send(request.encode('utf-8'))
+            
+            # Recibe la respuesta del servidor
+            response = client.recv(1024).decode('utf-8')
+            return response
+        except Exception as e:
+            return f"Error: {str(e)}"
+        finally:
+            client.close()
+
+if __name__ == "__main__":
+    client = CorbaClient()
+
+    # Llamadas remotas a métodos
+    print(client.invoke("say_hello", "World"))
+    print(client.invoke("add_numbers", 5, 7))
+    print(client.invoke("non_existent_method"))
+
+'''
