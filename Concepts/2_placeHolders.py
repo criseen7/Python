@@ -123,3 +123,10 @@ print(ord('c'), ord('p'), sep='\t<\t')
 #Python proporciona una función «built-in» llamada dir() para inspeccionar un determinado tipo de objeto
 text = 'This is it!'
 print(dir(text))#dir() devuelve una lista de nombres de atributos y métodos de un objeto
+
+#Expresiones regulares
+#import re
+#re.sub(pattern, replacement, string)
+#r'[^a-zA-Z0-9]' → Significa "cualquier cosa que NO sea una letra o un número"
+#r'\s' → Representa cualquier espacio en blanco.
+#r'\d' → Representa cualquier número (0-9).
