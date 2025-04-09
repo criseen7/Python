@@ -130,3 +130,6 @@ print(dir(text))#dir() devuelve una lista de nombres de atributos y métodos de 
 #r'[^a-zA-Z0-9]' → Significa "cualquier cosa que NO sea una letra o un número"
 #r'\s' → Representa cualquier espacio en blanco.
 #r'\d' → Representa cualquier número (0-9).
+#r'\w' → Representa cualquier carácter alfanumérico (letra)
+#(\D) → Cualquier carácter que NO sea un dígito (como a, b, c...).
+#(\d+) → Uno o más dígitos (números como 3, 12, etc.).
