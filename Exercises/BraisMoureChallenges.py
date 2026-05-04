@@ -61,11 +61,34 @@ def primos():
         if EsPrimo(i):
             nPrimos.append(i)
     print(f"Los numeros primos entre 1 y 100 son:\n{nPrimos}")
-
+#5 área de un Poligono
+'''Crea una única función (importante que sólo sea una) que sea capazde calcular y retornar el área de un polígono.
+ - La función recibirá por parámetro sólo UN polígono a la vez.
+ - Los polígonos soportados serán Triángulo, Cuadrado y Rectángulo.
+ - Imprime el cálculo del área de un polígono de cada tipo.
+'''
+def Poligonos(o):
+    match o:
+        case 1:
+            h = float(input("Ingresa la altura del triángulo: "))
+            b = float(input("Ingresa la base del triángulo: "))
+            print(f"el área del triángulo es = {(b*h)/2}")
+        case 2:
+            l = float(input("Ingresa el lado del cuadrado: ")) 
+            print(f"el área del cuadrado es = {(l*l)}")
+        case 3:
+            l = float(input("Ingresa el largo del rectángulo: "))
+            a = float(input("Ingresa el ancho del rectángulo: "))
+            print(f"el área del rectángulo es = {(l*a)}")
+        case _:
+            print("Opcion invalida...")
+            return
+        
 def main():
     try:
         while True:
-            opt = int(input("**********Menu**********\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\nElige una opción:"))
+            opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-área de un Poligono" \
+            "\nElige una opción:"))
             match opt:
                 case 1:
                     FizzBuzz()
@@ -86,6 +109,13 @@ def main():
                     else:
                         print(f"El numero '{n}' no es un numero primo")
                     primos()
+                case 5:
+                    while True:
+                        opt = int(input("1.- Triángulo\n2.- Cuadrado\n3.- Rectángulo\nElije un poligono para calcular su área:"))
+                        Poligonos(opt)
+                        y = input("Quieres calcular el área de otro poligono? (y/n): ").lower().strip()
+                        if y!="y":
+                            break
                 case _:
                     print("\nSaliendo...")
                     break
