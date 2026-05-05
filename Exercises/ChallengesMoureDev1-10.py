@@ -94,11 +94,33 @@ def Invertir(frase):
         invertida = invertida + i
     print(invertida)
         
+#8 Contando palabras
+'''
+ Crea un programa que cuente cuantas veces se repite cada palabra y que muestre el recuento final de todas ellas.
+- Los signos de puntuación no forman parte de la palabra.
+- Una palabra es la misma aunque aparezca en mayúsculas y minúsculas.
+- No se pueden utilizar funciones propias del lenguaje que lo resuelvan automáticamente.
+'''       
+def ContarPalabras(frase):
+    palabras = {}
+    temp = ""
+    for p in frase:
+        if p == " ":
+            if temp != "":
+                if temp not in palabras:     
+                    palabras[temp] = 1
+                else:
+                    palabras[temp]+=1
+            temp = ""
+        elif p.isalnum():
+            temp = temp + p
+    print(palabras)
+
 def main():
     try:
         while True:
             opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-Area de un Poligono"
-            "\n7.-Invertir Cadena\nElige una opción: "))
+            "\n7.-Invertir Cadena\n8.-Contar Palabras\nElige una opción: "))
             match opt:
                 case 1:
                     FizzBuzz()
@@ -132,7 +154,9 @@ def main():
                 case 7:
                     frase = input("Ingresa una frase: ")
                     Invertir(frase)
-                
+                case 8:
+                    frase = input("Ingresa una frase: ").lower().strip()
+                    print(f"Palabras: {ContarPalabras(frase)}")
                 case _:
                     print("\nSaliendo...")
                     break
