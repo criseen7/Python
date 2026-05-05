@@ -4,9 +4,9 @@
 '''
 * Escribe un programa que muestre por consola (con un print) los números de 1 a 100 (ambos incluidos y con un salto de línea entre
  cada impresión), sustituyendo los siguientes:
-* - Múltiplos de 3 por la palabra "fizz".
-* - Múltiplos de 5 por la palabra "buzz".
-* - Múltiplos de 3 y de 5 a la vez por la palabra "fizzbuzz".
+- Múltiplos de 3 por la palabra "fizz".
+- Múltiplos de 5 por la palabra "buzz".
+- Múltiplos de 3 y de 5 a la vez por la palabra "fizzbuzz".
 '''
 def FizzBuzz():
     for i in range(1,101):
@@ -83,12 +83,22 @@ def Poligonos(o):
         case _:
             print("Opcion invalida...")
             return
+#7.- Invertir una cadena
+'''
+Crea un programa que invierta el orden de una cadena de texto sin usar funciones propias del lenguaje que lo hagan de forma automática.
+- Si le pasamos "Hola mundo" nos retornaría "odnum aloH"
+'''
+def Invertir(frase):
+    invertida = ""
+    for i in reversed(frase):
+        invertida = invertida + i
+    print(invertida)
         
 def main():
     try:
         while True:
-            opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-área de un Poligono" \
-            "\nElige una opción:"))
+            opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-Area de un Poligono"
+            "\n7.-Invertir Cadena\nElige una opción: "))
             match opt:
                 case 1:
                     FizzBuzz()
@@ -116,6 +126,13 @@ def main():
                         y = input("Quieres calcular el área de otro poligono? (y/n): ").lower().strip()
                         if y!="y":
                             break
+                case 6:
+                    print("Proximamente...")
+                    break
+                case 7:
+                    frase = input("Ingresa una frase: ")
+                    Invertir(frase)
+                
                 case _:
                     print("\nSaliendo...")
                     break
