@@ -90,8 +90,8 @@ Crea un programa que invierta el orden de una cadena de texto sin usar funciones
 '''
 def Invertir(frase):
     invertida = ""
-    for i in reversed(frase):
-        invertida = invertida + i
+    for i in frase:
+        invertida = i + invertida
     print(invertida)
         
 #8 Contando palabras
@@ -115,12 +115,27 @@ def ContarPalabras(frase):
         elif p.isalnum():
             temp = temp + p
     print(palabras)
+#9 Decimal a binario
+'''
+Crea un programa se encargue de transformar un número decimal a binario sin utilizar funciones propias del lenguaje que lo hagan directamente.
+'''
+def Binario(m):
+    binario = ""
+    n = abs(m)
+    if n == 0 or n == 1:
+        return n
+    while n>=1:
+        binario = binario + str(int(n%2))
+        n /= 2
+    if m < 0:
+        binario  = "1" + binario
+    return binario
 
 def main():
     try:
         while True:
             opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-Area de un Poligono"
-            "\n7.-Invertir Cadena\n8.-Contar Palabras\nElige una opción: "))
+            "\n7.-Invertir Cadena\n8.-Contar Palabras\n9.-Decimal a Binario\nElige una opción: "))
             match opt:
                 case 1:
                     FizzBuzz()
@@ -157,6 +172,9 @@ def main():
                 case 8:
                     frase = input("Ingresa una frase: ").lower().strip()
                     print(f"Palabras: {ContarPalabras(frase)}")
+                case 9:
+                    n = int(input("Ingresa un número entero: "))
+                    print(f"El número {n} = {Binario(n)} en binario")
                 case _:
                     print("\nSaliendo...")
                     break
