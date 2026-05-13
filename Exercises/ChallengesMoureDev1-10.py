@@ -119,23 +119,28 @@ def ContarPalabras(frase):
 '''
 Crea un programa se encargue de transformar un número decimal a binario sin utilizar funciones propias del lenguaje que lo hagan directamente.
 '''
-def Binario(m):
+def Binario(n):
     binario = ""
-    n = abs(m)
     if n == 0 or n == 1:
         return n
     while n>=1:
-        binario = binario + str(int(n%2))
+        binario =str(int(n%2)) + binario
         n /= 2
-    if m < 0:
-        binario  = "1" + binario
     return binario
-
+#10 Código Morse
+'''
+Crea un programa que sea capaz de transformar texto natural a código morse y viceversa.
+- Debe detectar automáticamente de qué tipo se trata y realizar la conversión.
+- En morse se soporta raya "—", punto ".", un espacio " " entre letras o símbolos y dos espacios entre palabras "  ".
+- El alfabeto morse soportado será el mostrado en https://es.wikipedia.org/wiki/C%C3%B3digo_morse
+'''
+def CodigoMorse(frase):
+    Alfabeto = {"A":".-","B":"-...","C":"-.-.","D":"-.."}
 def main():
     try:
         while True:
             opt = int(input("**********Menu**********\n0.-Salir\n1.-FizzBuzz\n2.-¿Es Anagrama?\n3.-Fibonacci\n4.-¿Es número primo?\n5.-Area de un Poligono"
-            "\n7.-Invertir Cadena\n8.-Contar Palabras\n9.-Decimal a Binario\nElige una opción: "))
+            "\n7.-Invertir Cadena\n8.-Contar Palabras\n9.-Decimal a Binario\n10.-Código Morse\nElige una opción: "))
             match opt:
                 case 1:
                     FizzBuzz()
@@ -173,8 +178,8 @@ def main():
                     frase = input("Ingresa una frase: ").lower().strip()
                     print(f"Palabras: {ContarPalabras(frase)}")
                 case 9:
-                    n = int(input("Ingresa un número entero: "))
-                    print(f"El número {n} = {Binario(n)} en binario")
+                    n = int(input("Ingresa un número entero positivo: "))
+                    print(f"El número {n} = {Binario(abs(n))} en binario")
                 case _:
                     print("\nSaliendo...")
                     break
