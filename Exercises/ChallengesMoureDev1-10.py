@@ -134,8 +134,31 @@ Crea un programa que sea capaz de transformar texto natural a código morse y vi
 - En morse se soporta raya "—", punto ".", un espacio " " entre letras o símbolos y dos espacios entre palabras "  ".
 - El alfabeto morse soportado será el mostrado en https://es.wikipedia.org/wiki/C%C3%B3digo_morse
 '''
-def CodigoMorse(frase):
-    Alfabeto = {"A":".-","B":"-...","C":"-.-.","D":"-.."}
+def CodigoMorse(frase,opt):
+    alfabeto = {"A":".-","B":"-...","C":"-.-.","D":"-..","E":".","F":"..-.","G":"--.","H":"....","I":"..","J":".---",
+                "K":"-.-","L":".-..","M":"--","N":"-.","Ñ":"--.--","O":"---","P":".--.","Q":"--.-","R":".-.","S":"...","T":"-",
+                "U":"..-","V":"...-","W":".--","X":"-..-","Y":"-.--","Z":"--..","0":"-----","1":".----","2":"..---","3":"...--",
+                "4":"....-","5":".....","6":"-....","7":"--...","8":"---..","9":"----.",",":"--..--","?":"--..--",".":".-.-.-",
+                '"':'.-..-.',":":"---...","-":"-....-","/":"-..-.","@":".--.-.","=":"-...-"}
+    if opt == 1:  # Texto a Morse
+        resultado = []
+        for caracter in frase.upper():
+            if caracter in alfabeto:
+                resultado.append(alfabeto[caracter])
+            elif caracter == " ":
+                resultado.append("") # Espacio doble para separar palabras
+        return " ".join(resultado)
+
+    elif opt == 2:  # Morse a Texto
+        inverso = {v: k for k, v in alfabeto.items()}
+        # Dividimos por espacios: un espacio separa letras, dos espacios separan palabras
+        palabras_morse = frase.split("  ")
+        mensaje_final = []
+        for palabra in palabras_morse:
+            letras = [inverso.get(c, "") for c in palabra.split()]
+            mensaje_final.append("".join(letras))
+        return " ".join(mensaje_final)
+    
 def main():
     try:
         while True:
@@ -180,6 +203,16 @@ def main():
                 case 9:
                     n = int(input("Ingresa un número entero positivo: "))
                     print(f"El número {n} = {Binario(abs(n))} en binario")
+                case 10:
+                    opt = int(input("\t1.-Texto a Morse\n \t2.-Morse a Texto\n\tElige una opción: "))
+                    if opt == 1:
+                        frase = input("Ingresa una frase: ")
+                    elif opt == 2:
+                        frase = input("Ingresa el código morse: ")
+                    else:
+                        print("Opcion invalida...")
+                        break
+                    print(CodigoMorse(frase.upper(),opt))
                 case _:
                     print("\nSaliendo...")
                     break
